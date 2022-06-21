@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spotify/data/data.dart';
 import 'package:spotify/screens/playlist_screen.dart';
-import 'package:spotify/widgets/side_menu.dart';
+import 'package:spotify/widgets/widget.dart';
 
 class Shell extends StatelessWidget {
   const Shell({Key? key}) : super(key: key);
@@ -12,10 +12,10 @@ class Shell extends StatelessWidget {
       body: Column(children: [
         Expanded(
             child: Row(
-          children: const [
-            SideMenu(),
+          children: [
+            if (MediaQuery.of(context).size.width > 800) SideMenu(),
             // PlaylistScreen
-            Expanded(
+            const Expanded(
               child: PlayListScreen(
                 playlist: lofihiphopPlaylist,
               ),
@@ -23,11 +23,7 @@ class Shell extends StatelessWidget {
           ],
         )),
         // Mini Player At the Button
-        Container(
-          height: 84.0,
-          width: double.infinity,
-          color: Colors.blue,
-        )
+        CurrentTrack(),
       ]),
     );
   }
