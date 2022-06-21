@@ -1,4 +1,8 @@
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:desktop_window/desktop_window.dart';
+import './screens/shell.dart';
 
 /*
   *) Package:
@@ -7,7 +11,12 @@ import 'package:flutter/material.dart';
       -> provider
 */
 
-void main() {
+void main() async {
+  // Set minimum window size for desktop application
+  WidgetsFlutterBinding.ensureInitialized();
+  if (!kIsWeb && (Platform.isMacOS || Platform.isLinux || Platform.isWindows)) {
+    await DesktopWindow.setMinWindowSize(const Size(600, 800));
+  }
   runApp(const MyApp());
 }
 
@@ -56,7 +65,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(),
+      home: const Shell(),
     );
   }
 }
