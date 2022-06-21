@@ -122,6 +122,7 @@ class _PlayListScreenState extends State<PlayListScreen> {
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 60.0),
             children: [
               PlaylistHeader(playlist: widget.playlist),
+              TracksList(tracks: widget.playlist.songs),
             ],
           ),
         ),
