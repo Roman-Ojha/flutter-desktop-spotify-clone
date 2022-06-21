@@ -54,7 +54,60 @@ class PlaylistHeader extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 20.0),
-        // _PlaylistButtons(followers: playlist.followers),
+        _PlaylistButtons(followers: playlist.followers),
+      ],
+    );
+  }
+}
+
+class _PlaylistButtons extends StatelessWidget {
+  final String followers;
+
+  const _PlaylistButtons({
+    Key? key,
+    required this.followers,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        TextButton(
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.symmetric(
+              vertical: 20.0,
+              horizontal: 48.0,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            backgroundColor: Theme.of(context).accentColor,
+            primary: Theme.of(context).iconTheme.color,
+            textStyle: Theme.of(context)
+                .textTheme
+                .caption!
+                .copyWith(fontSize: 12.0, letterSpacing: 2.0),
+          ),
+          onPressed: () {},
+          child: const Text('PLAY'),
+        ),
+        const SizedBox(width: 8.0),
+        IconButton(
+          icon: const Icon(Icons.favorite_border),
+          iconSize: 30.0,
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: const Icon(Icons.more_horiz),
+          iconSize: 30.0,
+          onPressed: () {},
+        ),
+        const Spacer(),
+        Text(
+          'FOLLOWERS\n$followers',
+          style: Theme.of(context).textTheme.overline!.copyWith(fontSize: 12.0),
+          textAlign: TextAlign.right,
+        )
       ],
     );
   }
